@@ -6,6 +6,7 @@ import UIKit
 class Main: UIResponder, UIApplicationDelegate {
     static let logger = Logger(subsystem: "Example", category: "Main")
     let applinApp: ApplinApp
+    var window: UIWindow?
 
     override init() {
         // Note: This code runs during app prewarming.
@@ -54,18 +55,23 @@ class Main: UIResponder, UIApplicationDelegate {
             _ application: UIApplication,
             didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        self.applinApp.application(application, didFinishLaunchingWithOptions: launchOptions)
+        // https://betterprogramming.pub/creating-ios-apps-without-storyboards-42a63c50756f
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let _ = self.applinApp.application(didFinishLaunchingWithOptions: launchOptions)
+        self.window!.rootViewController = self.applinApp.navigationController
+        self.window!.makeKeyAndVisible()
+        return true
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        self.applinApp.applicationDidBecomeActive(application)
+        self.applinApp.applicationDidBecomeActive()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.applinApp.applicationDidEnterBackground(application)
+        self.applinApp.applicationDidEnterBackground()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        self.applinApp.applicationWillTerminate(application)
+        self.applinApp.applicationWillTerminate()
     }
 }
