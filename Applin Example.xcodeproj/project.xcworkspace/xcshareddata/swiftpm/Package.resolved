@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/leonhard-llc/applin-ios.git",
       "state" : {
-        "revision" : "f3599d426c7fc34a5345ac84e6099db987fe4739",
-        "version" : "0.20.0"
+        "revision" : "403e0c1fe869c9fb4be176c14d87a713381c6a1c",
+        "version" : "0.21.0"
       }
     }
   ],
