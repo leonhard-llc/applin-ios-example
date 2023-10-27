@@ -5,6 +5,42 @@ import UIKit
 @main
 class Main: UIResponder, UIApplicationDelegate {
     static let logger = Logger(subsystem: "Example", category: "Main")
+    static let FIRST_STARTUP_PAGE_KEY = "/startup"
+    static let TERMS_PAGE_KEY = "/terms"
+    static let PRIVACY_PAGE_KEY = "/privacy"
+
+    public static func firstStartupPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+        PlainPageSpec(title: "Legal Form", ColumnSpec([
+            ImageSpec(url: "asset:///logo.png", aspectRatio: 1.67, disposition: .fit),
+            TextSpec("To use this app, you must agree to the Terms of Use and be at least 18 years old."),
+            FormSpec([
+                NavButtonSpec(text: "Terms of Use", [.push(TERMS_PAGE_KEY)]),
+                NavButtonSpec(text: "Privacy Policy", [.push(PRIVACY_PAGE_KEY)]),
+            ]),
+            FormButtonSpec(text: "I Agree and I am 18+ Years Old", [.replaceAll("/")]),
+        ]))
+    }
+
+    public static func privacyPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+        let bytes = try! readBundleFile(filepath: "/privacy.txt")
+        let string = String(data: bytes, encoding: String.Encoding.utf8)!
+        return NavPageSpec(
+                pageKey: pageKey,
+                title: "Privacy Policy",
+                ScrollSpec(pull_to_refresh: false, TextSpec(string))
+        )
+    }
+
+    public static func termsPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+        let bytes = try! readBundleFile(filepath: "/terms.txt")
+        let string = String(data: bytes, encoding: String.Encoding.utf8)!
+        return NavPageSpec(
+                pageKey: pageKey,
+                title: "Terms of Use",
+                ScrollSpec(pull_to_refresh: false, TextSpec(string))
+        )
+    }
+
     let applinApp: ApplinApp
     var window: UIWindow?
 
@@ -15,7 +51,7 @@ class Main: UIResponder, UIApplicationDelegate {
             let config = try ApplinConfig(
                     // Required
                     appStoreAppId: 0,
-                    showPageOnFirstStartup: "/legal_form",
+                    showPageOnFirstStartup: Self.FIRST_STARTUP_PAGE_KEY,
                     staticPages: [
                         // Required
                         StaticPageKeys.APPLIN_CLIENT_ERROR: StaticPages.applinClientError,
@@ -28,9 +64,9 @@ class Main: UIResponder, UIApplicationDelegate {
                         StaticPageKeys.ERROR_DETAILS: StaticPages.errorDetails,
                         StaticPageKeys.SERVER_STATUS: StaticPages.serverStatus,
                         StaticPageKeys.SUPPORT: StaticPages.support,
-                        "/legal_form": StaticPages.legalForm,
-                        StaticPageKeys.TERMS: StaticPages.terms,
-                        StaticPageKeys.PRIVACY_POLICY: StaticPages.privacyPolicy,
+                        Self.FIRST_STARTUP_PAGE_KEY: Self.firstStartupPage,
+                        Self.TERMS_PAGE_KEY: Self.termsPage,
+                        Self.PRIVACY_PAGE_KEY: Self.privacyPage,
                     ],
                     urlForDebugBuilds: URL(string: "http://192.168.0.2:8000/")!,
                     urlForSimulatorBuilds: URL(string: "http://127.0.0.1:8000/")!,

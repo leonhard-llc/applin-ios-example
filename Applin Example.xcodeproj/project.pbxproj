@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1D81362AEB68E300AFE636 /* privacy.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE1D81352AEB68E200AFE636 /* privacy.txt */; };
+		CE1D81382AEB6F6300AFE636 /* terms.txt in Resources */ = {isa = PBXBuildFile; fileRef = CE1D81372AEB68EC00AFE636 /* terms.txt */; };
+		CE1D813B2AEB719000AFE636 /* ApplinIos in Frameworks */ = {isa = PBXBuildFile; productRef = CE1D813A2AEB719000AFE636 /* ApplinIos */; };
 		CE432B102ACCE19400C7023F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE432B0F2ACCE19400C7023F /* Assets.xcassets */; };
 		CE432B1F2ACCE2DF00C7023F /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE432B1E2ACCE2DF00C7023F /* Main.swift */; };
-		CE432B222ACCE2FF00C7023F /* ApplinIos in Frameworks */ = {isa = PBXBuildFile; productRef = CE432B212ACCE2FF00C7023F /* ApplinIos */; };
 		CE432B262ACCE7A900C7023F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CE432B252ACCE7A900C7023F /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE1D81352AEB68E200AFE636 /* privacy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privacy.txt; sourceTree = "<group>"; };
+		CE1D81372AEB68EC00AFE636 /* terms.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = terms.txt; sourceTree = "<group>"; };
 		CE432B032ACCE19200C7023F /* Applin Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Applin Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE432B0F2ACCE19400C7023F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE432B142ACCE19400C7023F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -26,18 +30,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE432B222ACCE2FF00C7023F /* ApplinIos in Frameworks */,
+				CE1D813B2AEB719000AFE636 /* ApplinIos in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE1D81302AEB684E00AFE636 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		CE1D81322AEB686000AFE636 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE432AFA2ACCE19200C7023F = {
 			isa = PBXGroup;
 			children = (
+				CE1D81302AEB684E00AFE636 /* Packages */,
 				CE432B052ACCE19200C7023F /* Applin Example */,
 				CE432B042ACCE19200C7023F /* Products */,
+				CE1D81322AEB686000AFE636 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +76,8 @@
 				CE432B142ACCE19400C7023F /* Info.plist */,
 				CE432B252ACCE7A900C7023F /* logo.png */,
 				CE432B1E2ACCE2DF00C7023F /* Main.swift */,
+				CE1D81352AEB68E200AFE636 /* privacy.txt */,
+				CE1D81372AEB68EC00AFE636 /* terms.txt */,
 			);
 			path = "Applin Example";
 			sourceTree = "<group>";
@@ -77,7 +99,7 @@
 			);
 			name = "Applin Example";
 			packageProductDependencies = (
-				CE432B212ACCE2FF00C7023F /* ApplinIos */,
+				CE1D813A2AEB719000AFE636 /* ApplinIos */,
 			);
 			productName = "Applin Example";
 			productReference = CE432B032ACCE19200C7023F /* Applin Example.app */;
@@ -109,7 +131,7 @@
 			);
 			mainGroup = CE432AFA2ACCE19200C7023F;
 			packageReferences = (
-				CE432B202ACCE2FF00C7023F /* XCRemoteSwiftPackageReference "applin-ios" */,
+				CE1D81392AEB719000AFE636 /* XCRemoteSwiftPackageReference "applin-ios" */,
 			);
 			productRefGroup = CE432B042ACCE19200C7023F /* Products */;
 			projectDirPath = "";
@@ -127,6 +149,8 @@
 			files = (
 				CE432B262ACCE7A900C7023F /* logo.png in Resources */,
 				CE432B102ACCE19400C7023F /* Assets.xcassets in Resources */,
+				CE1D81382AEB6F6300AFE636 /* terms.txt in Resources */,
+				CE1D81362AEB68E300AFE636 /* privacy.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,20 +359,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CE432B202ACCE2FF00C7023F /* XCRemoteSwiftPackageReference "applin-ios" */ = {
+		CE1D81392AEB719000AFE636 /* XCRemoteSwiftPackageReference "applin-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/leonhard-llc/applin-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.18.0;
+				minimumVersion = 0.22.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CE432B212ACCE2FF00C7023F /* ApplinIos */ = {
+		CE1D813A2AEB719000AFE636 /* ApplinIos */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE432B202ACCE2FF00C7023F /* XCRemoteSwiftPackageReference "applin-ios" */;
+			package = CE1D81392AEB719000AFE636 /* XCRemoteSwiftPackageReference "applin-ios" */;
 			productName = ApplinIos;
 		};
 /* End XCSwiftPackageProductDependency section */
