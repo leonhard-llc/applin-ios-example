@@ -1,14 +1,15 @@
 {
+  "originHash" : "5e64b1632cb9ddb99a5c244fbb1f6108fde087b08d2931c1bbfe53e3fdba54b4",
   "pins" : [
     {
       "identity" : "applin-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/leonhard-llc/applin-ios.git",
       "state" : {
-        "revision" : "acfd09f5ad252e0ecbf3cd91c405f08cb940d58c",
-        "version" : "0.22.0"
+        "revision" : "8b80362d01da888e273d7f3c2cb3e24243aae305",
+        "version" : "0.40.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

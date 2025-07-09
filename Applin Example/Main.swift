@@ -47,10 +47,19 @@ class Main: UIResponder, UIApplicationDelegate {
     override init() {
         // Note: This code runs during app prewarming.
         do {
-            URLCache.shared = URLCache(memoryCapacity: 10 * 1024 * 1024, diskCapacity: 500 * 1024 * 1024, diskPath: nil)
+            #if targetEnvironment(simulator)
+            let baseUrl = URL(string: "http://127.0.0.1:8000/")!
+            #elseif DEBUG
+            // Run Debug builds on your phone.  Use the URL of your laptop on the local network:
+            let baseUrl = URL(string: "http://192.168.0.2:8000/")!
+            #else
+            // Publish Release builds to the App Store.  Use the URL to your production server:
+            let baseUrl = URL(string: "https://app.example.com/")!
+            #endif
             let config = try ApplinConfig(
                     // Required
                     appStoreAppId: 0,
+                    baseUrl: baseUrl,
                     showPageOnFirstStartup: Self.FIRST_STARTUP_PAGE_KEY,
                     staticPages: [
                         // Required
@@ -68,9 +77,6 @@ class Main: UIResponder, UIApplicationDelegate {
                         Self.TERMS_PAGE_KEY: Self.termsPage,
                         Self.PRIVACY_PAGE_KEY: Self.privacyPage,
                     ],
-                    urlForDebugBuilds: URL(string: "http://192.168.0.2:8000/")!,
-                    urlForSimulatorBuilds: URL(string: "http://127.0.0.1:8000/")!,
-                    licenseKey: nil, // ApplinLicenseKey("DSZKrGaWAUymZXezLAA,https://app.example.com/"),
                     // Optional
                     statusPageUrl: URL(string: "https://status.example.com/")!,
                     supportChatUrl: URL(string: "https://www.example.com/support")!,
@@ -78,6 +84,7 @@ class Main: UIResponder, UIApplicationDelegate {
                     supportSmsTel: "+10005551111"
             )
             self.applinApp = ApplinApp(config)
+            URLCache.shared = URLCache(memoryCapacity: 10 * 1024 * 1024, diskCapacity: 500 * 1024 * 1024, diskPath: nil)
         } catch let e {
             Self.logger.fault("error starting app: \(e)")
             fatalError("error starting app: \(e)")
