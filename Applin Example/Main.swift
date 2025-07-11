@@ -5,23 +5,23 @@ import UIKit
 @main
 class Main: UIResponder, UIApplicationDelegate {
     static let logger = Logger(subsystem: "Example", category: "Main")
-    static let FIRST_STARTUP_PAGE_KEY = "/startup"
-    static let TERMS_PAGE_KEY = "/terms"
-    static let PRIVACY_PAGE_KEY = "/privacy"
+    nonisolated static let FIRST_STARTUP_PAGE_KEY = "/startup"
+    nonisolated static let TERMS_PAGE_KEY = "/terms"
+    nonisolated static let PRIVACY_PAGE_KEY = "/privacy"
 
-    public static func firstStartupPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+    nonisolated public static func firstStartupPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
         PlainPageSpec(title: "Legal Form", ColumnSpec([
             ImageSpec(url: "asset:///logo.png", aspectRatio: 1.67, disposition: .fit),
-            TextSpec("To use this app, you must agree to the Terms of Use and be at least 18 years old."),
+            TextSpec("To use this app, you must agree to the Terms of Use."),
             FormSpec([
                 NavButtonSpec(text: "Terms of Use", [.push(TERMS_PAGE_KEY)]),
                 NavButtonSpec(text: "Privacy Policy", [.push(PRIVACY_PAGE_KEY)]),
             ]),
-            FormButtonSpec(text: "I Agree and I am 18+ Years Old", [.replaceAll("/")]),
+            FormButtonSpec(text: "I Agree", [.replaceAll("/")]),
         ]))
     }
 
-    public static func privacyPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+    nonisolated public static func privacyPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
         let bytes = try! readBundleFile(filepath: "/privacy.txt")
         let string = String(data: bytes, encoding: String.Encoding.utf8)!
         return NavPageSpec(
@@ -31,7 +31,7 @@ class Main: UIResponder, UIApplicationDelegate {
         )
     }
 
-    public static func termsPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
+    nonisolated public static func termsPage(_ config: ApplinConfig, _ pageKey: String) -> ToPageSpec {
         let bytes = try! readBundleFile(filepath: "/terms.txt")
         let string = String(data: bytes, encoding: String.Encoding.utf8)!
         return NavPageSpec(
